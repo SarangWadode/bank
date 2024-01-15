@@ -161,13 +161,6 @@ int validPan(char pan[]) {
   return 1;
 }
 
-//SPW14289383
-//Sarang Pramod Wadode
-
-//To Do
-//hard code ifsc code 
-
-//validate bank account number
 int validateBankAccountNumber(char number[]) {
   if(strlen(number) == 11) {
     // printf("Valid Bank account number\n");

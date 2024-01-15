@@ -5,6 +5,8 @@
 #include <time.h>
 #define Max 50
 
+int accountCount = 0;
+
 struct Bank {
   char bank_name[Max];
   char account_holder_name[Max];
@@ -27,179 +29,183 @@ struct Bank createBankAccount() {
   printf("\ncreate account function called \n");
   
   // hard code names
-  strcpy(b.bank_name, "ICICI");
-  strcpy(b.account_holder_name, "Sarang Pramod Wadode");
-  b.age = 23;
-  strcpy(b.gender, "Male");
-  strcpy(b.dob, "02/05/2000");
-  strcpy(b.address, "xyz");
-  strcpy(b.city, "Pune");
-  strcpy(b.account_type, "Salary");
-  strcpy(b.aadhar, "311860530326");
-  strcpy(b.pan, "AGNPW5165B");
+  // strcpy(b.bank_name, "ICICI");
+  // strcpy(b.account_holder_name, "Sarang Pramod Wadode");
+  // b.age = 23;
+  // strcpy(b.gender, "Male");
+  // strcpy(b.dob, "02/05/2000");
+  // strcpy(b.address, "xyz");
+  // strcpy(b.city, "Pune");
+  // strcpy(b.account_type, "Salary");
+  // strcpy(b.aadhar, "311860530326");
+  // strcpy(b.pan, "AGNPW5165B");
 
-  // //bank name
-  // int ch = chooseBankName();
-  // switch (ch)
-  // {
-  // case 1:
-  //   strcpy(b.bank_name, "ICICI");
-  //   break;
-  // case 2:
-  //   strcpy(b.bank_name, "AXIS");
-  //   break;
-  // case 3:
-  //   strcpy(b.bank_name, "ICICI");
-  //   break;
-  // case 4:
-  //   strcpy(b.bank_name, "HDFC");
-  //   break;
-  // default:
-  //   printf("Enter valid choice!");
-  // }
-  // printf("You selected %s bank\n", b.bank_name);
+  //bank name
+  int ch = chooseBankName();
+  switch (ch)
+  {
+  case 1:
+    strcpy(b.bank_name, "ICICI");
+    strcpy(b.ifsc_code, "ICIC000561");
+    break;
+  case 2:
+    strcpy(b.bank_name, "AXIS");
+    strcpy(b.ifsc_code, "AXIS000561");
+    break;
+  case 3:
+    strcpy(b.bank_name, "ICICI");
+    strcpy(b.ifsc_code, "IDBI000561");
+    break;
+  case 4:
+    strcpy(b.bank_name, "HDFC");
+    strcpy(b.ifsc_code, "HDFC000561");
+    break;
+  default:
+    printf("Enter valid choice!");
+  }
+  printf("You selected %s bank\n", b.bank_name);
 
-  // //accountholder name
-  // int flag = 1;
-  // printf("Enter bank account holder name: \n");
-  // while (flag) {
-  //   printf("First Middle Last: ");
-  //   fgets(b.account_holder_name, Max, stdin);
-  //   b.account_holder_name[strlen(b.account_holder_name) - 1] = '\0';
-  //   //validate
-  //   int n = validateBankAccountholderName(b.account_holder_name);
-  //   if(n) {
-  //     flag = 0;
-  //     printf("valid\n");
-  //   } else {
-  //     printf("not valid\n");
-  //   }
-  // }
-  // printf("bank account holder name: %s\n", b.account_holder_name);
+  //accountholder name
+  int flag = 1;
+  printf("Enter bank account holder name: \n");
+  while (flag) {
+    printf("First Middle Last: ");
+    fgets(b.account_holder_name, Max, stdin);
+    b.account_holder_name[strlen(b.account_holder_name) - 1] = '\0';
+    //validate
+    int n = validateBankAccountholderName(b.account_holder_name);
+    if(n) {
+      flag = 0;
+      printf("valid\n");
+    } else {
+      printf("not valid\n");
+    }
+  }
+  printf("bank account holder name: %s\n", b.account_holder_name);
   
-  // //age
-  // int age=1;
-  // while (age) {
-  //   printf("Enter your age: ");
-  //   scanf("%d", &b.age);
-  //   if (validateAge(b.age)) {
-  //     printf("valid\n");
-  //     age=0;
-  //   }else {
-  //     printf("not valid\n");
-  //   }
-  // }
-  // printf("age is: %d\n", b.age);
-  // getchar();
+  //age
+  int age=1;
+  while (age) {
+    printf("Enter your age: ");
+    scanf("%d", &b.age);
+    if (validateAge(b.age)) {
+      printf("valid\n");
+      age=0;
+    }else {
+      printf("not valid\n");
+    }
+  }
+  printf("age is: %d\n", b.age);
+  getchar();
 
-  // //gender
-  // int cg = chooseGender();
-  // switch (cg)
-  // {
-  //   case 1:
-  //     strcpy(b.gender, "Male");
-  //     break;
-  //   case 2:
-  //     strcpy(b.gender, "Female");
-  //     break;
-  //   case 3:
-  //     strcpy(b.gender, "Other");
-  //     break;
-  //   default:
-  //     printf("Invalid choice");
-  // }
-  // printf("Your gender is: %s\n", b.gender);
+  //gender
+  int cg = chooseGender();
+  switch (cg)
+  {
+    case 1:
+      strcpy(b.gender, "Male");
+      break;
+    case 2:
+      strcpy(b.gender, "Female");
+      break;
+    case 3:
+      strcpy(b.gender, "Other");
+      break;
+    default:
+      printf("Invalid choice");
+  }
+  printf("Your gender is: %s\n", b.gender);
   
-  // //dob
-  // int v_dob = 1;
-  // getchar();
-  // while(v_dob) {
-  //   printf("Enter DOB: dd-mm-yyyy: ");
-  //   fgets(b.dob, Max, stdin);
-  //   b.dob[strlen(b.dob) - 1] = '\0';
-  // // strcpy(b.dob, "02052000");
-  //   if(validateDOB(b.dob)) {
-  //     printf("valid\n");
-  //     v_dob=0;
-  //   } else{
-  //     printf("not valid\n");
-  //   }
-  // }
-  // printf("your dob is: %s\n", b.dob);
+  //dob
+  int v_dob = 1;
+  getchar();
+  while(v_dob) {
+    printf("Enter DOB: dd-mm-yyyy: ");
+    fgets(b.dob, Max, stdin);
+    b.dob[strlen(b.dob) - 1] = '\0';
+  // strcpy(b.dob, "02052000");
+    if(validateDOB(b.dob)) {
+      printf("valid\n");
+      v_dob=0;
+    } else{
+      printf("not valid\n");
+    }
+  }
+  printf("your dob is: %s\n", b.dob);
   
-  // //address
-  // printf("Enter address: ");
-  // fgets(b.address, Max, stdin);
-  // b.address[strlen(b.address) - 1] = '\0';
+  //address
+  printf("Enter address: ");
+  fgets(b.address, Max, stdin);
+  b.address[strlen(b.address) - 1] = '\0';
 
-  // //city
-  // int cc = chooseCity();
-  // switch (cc)
-  // {
-  //   case 1:
-  //     strcpy(b.city, "Pune");
-  //     break;
-  //   case 2:
-  //     strcpy(b.city, "Mumbai");
-  //     break;
-  //   case 3:
-  //     strcpy(b.city, "Delhi");
-  //     break;
-  //   default:
-  //     printf("Invalid choice");
-  // }
-  // printf("Your city is: %s", b.city);
+  //city
+  int cc = chooseCity();
+  switch (cc)
+  {
+    case 1:
+      strcpy(b.city, "Pune");
+      break;
+    case 2:
+      strcpy(b.city, "Mumbai");
+      break;
+    case 3:
+      strcpy(b.city, "Delhi");
+      break;
+    default:
+      printf("Invalid choice");
+  }
+  printf("Your city is: %s", b.city);
   
-  // //account type
-  // int cat = chooseAccountType();
-  // switch (cat)
-  // {
-  //   case 1:
-  //     strcpy(b.account_type, "Current");
-  //     break;
-  //   case 2:
-  //     strcpy(b.account_type, "Saving");
-  //     break;
-  //   case 3:
-  //     strcpy(b.account_type, "Salary");
-  //     break;
-  //   default:
-  //     printf("Invalid choice");
-  // }
-  // getchar();
-  // printf("Your account type is: %s\n", b.account_type);
+  //account type
+  int cat = chooseAccountType();
+  switch (cat)
+  {
+    case 1:
+      strcpy(b.account_type, "Current");
+      break;
+    case 2:
+      strcpy(b.account_type, "Saving");
+      break;
+    case 3:
+      strcpy(b.account_type, "Salary");
+      break;
+    default:
+      printf("Invalid choice");
+  }
+  getchar();
+  printf("Your account type is: %s\n", b.account_type);
   
-  // //aadhaar
-  // int va=1;
-  // while (va)
-  // {
-  //   printf("Enter aadhaar number: ");
-  //   fgets(b.aadhar, Max, stdin);
-  //   b.aadhar[strlen(b.aadhar) - 1] = '\0';
-  //   // strcpy(b.aadhar, "311860530326");
-  //   if(validAadhaar(b.aadhar)) {
-  //     printf("Valid Aadhaar Number\n");
-  //     va=0;
-  //   } else {
-  //     printf("Aadhaar Number not valid\n");
-  //   }
-  // }
+  //aadhaar
+  int va=1;
+  while (va)
+  {
+    printf("Enter aadhaar number: ");
+    fgets(b.aadhar, Max, stdin);
+    b.aadhar[strlen(b.aadhar) - 1] = '\0';
+    // strcpy(b.aadhar, "311860530326");
+    if(validAadhaar(b.aadhar)) {
+      printf("Valid Aadhaar Number\n");
+      va=0;
+    } else {
+      printf("Aadhaar Number not valid\n");
+    }
+  }
   
-  // //pan
-  // int vp=1;
-  // while(vp) {
-  //   printf("Enter PAN: ");
-  //   // getchar();
-  //   fgets(b.pan, Max, stdin);
-  //   b.pan[strlen(b.pan) - 1] = '\0';
-  //   // strcpy(b.pan, "AGNPW5165B");
-  //   if (validPan(b.pan)) {
-  //     printf("Valid PAN\n");
-  //     vp=0;
-  //   }else {
-  //     printf("Not a valid PAN\n");
-  //   }
-  // }
+  //pan
+  int vp=1;
+  while(vp) {
+    printf("Enter PAN: ");
+    // getchar();
+    fgets(b.pan, Max, stdin);
+    b.pan[strlen(b.pan) - 1] = '\0';
+    // strcpy(b.pan, "AGNPW5165B");
+    if (validPan(b.pan)) {
+      printf("Valid PAN\n");
+      vp=0;
+    }else {
+      printf("Not a valid PAN\n");
+    }
+  }
   
   //generate account number
   char acn[Max] = "";
@@ -226,7 +232,7 @@ struct Bank createBankAccount() {
   strcpy(b.account_number, acn);
 
   //generate ifsc code
-  strcpy(b.ifsc_code, "ICIC000561");
+  // strcpy(b.ifsc_code, "ICIC000561");
 
   //set balance=0
   b.balance = 0;
@@ -239,7 +245,7 @@ struct Bank createBankAccount() {
 //display bank details
 void displayBankDetails(struct Bank b[2]) {
   printf("Bank account holder details\n");
-  for(int i=0; i<2; i++) {
+  for(int i=0; i<accountCount; i++) {
     printf("-----------------xx--------------\n");
     printf("Bank Details of customer %d are: \n", i);
     printf("Bank: %s\n", b[i].bank_name);
@@ -268,7 +274,7 @@ void updateBankDetails(struct Bank* b) {
   acc_num[strlen(acc_num) - 1] = '\0';
 
   //we have to loop through here
-  for(int i=0; i<2; i++) {
+  for(int i=0; i<accountCount; i++) {
     // printf("%s\n", b[i].account_number);
     if (strcmp(b[i].account_number, acc_num) == 0) {
       printf("Account Detected Fetching Info... \n");
@@ -358,7 +364,7 @@ void updateBankDetails(struct Bank* b) {
       }
       
     } else {
-      printf("Account number not matched \n");
+      // printf("Account number not matched \n");
     }
   }
 }
@@ -375,7 +381,7 @@ void deposite(struct Bank* b) {
   // getchar();
 
   //match account number
-  for(int i=0; i<2; i++) {
+  for(int i=0; i<accountCount; i++) {
     printf("bnk acc: %s acc num: %s\n", b[i].account_number, acc_num);
     if (strcmp(b[i].account_number, acc_num) == 0) {
       printf("Account Detected Fetching Info... \n");
@@ -387,7 +393,7 @@ void deposite(struct Bank* b) {
       printf("New Balance: %d\n", b[i].balance);
       break;
     } else {
-      printf("Account number not matched \n");
+      // printf("Account number not matched \n");
     }
   }
 }
@@ -404,7 +410,7 @@ void withdraw(struct Bank* b) {
   acc_num[strlen(acc_num) - 1] = '\0';
   // getchar();
 
-  for(int i=0; i<2; i++) {
+  for(int i=0; i<accountCount; i++) {
     printf("bacn %s acc num: %s\n", b[i].account_number, acc_num);
     if (strcmp(b[i].account_number, acc_num) == 0) {
       printf("Account Detected Fetching Info... \n");
@@ -422,7 +428,7 @@ void withdraw(struct Bank* b) {
         break;
       }
     } else {
-      printf("Account number not matched \n");
+      // printf("Account number not matched \n");
     }
   }
 }
@@ -439,14 +445,14 @@ void checkAccountBalance(struct Bank* b) {
   acc_num[strlen(acc_num) - 1] = '\0';
   // getchar();
 
-  for(int i=0; i<2; i++) {
+  for(int i=0; i<accountCount; i++) {
     printf("bacn %s acc num: %s\n", b[i].account_number, acc_num);
     if (strcmp(b[i].account_number, acc_num) == 0) {
       printf("Account Detected Fetching Info... \n");
       printf("Your account balance is: %d\n", b[i].balance);
       break;
     } else {
-      printf("Account number not matched \n");
+      // printf("Account number not matched \n");
     }
   }
 }
@@ -486,7 +492,7 @@ void searchBankDetails(struct Bank* b) {
           //validate to do
           // int n = validateBankAccount(updated_name);
 
-          for(int i=0; i<2; i++) {
+          for(int i=0; i<accountCount; i++) {
               if(strcmp(b[i].account_number, entered_number)==0) {
                 printf("-----------------xx--------------\n");
                 printf("Bank account found, fetching data...\n");
@@ -590,7 +596,7 @@ void searchBankDetails(struct Bank* b) {
         getchar();
         printf("-------------------------xx---------------------------\n");
         printf("Search by account type: %s\n", type);
-        for (int i=0; i<2; i++) {
+        for (int i=0; i<accountCount; i++) {
           if(strcmp(b[i].account_type, type) == 0) {
             printf("-----------------xx--------------\n");
             printf("Bank account found, fetching data...\n");
@@ -621,7 +627,6 @@ void searchBankDetails(struct Bank* b) {
   }
 }
 
-
 void fundTransfer(struct Bank* b) {
   // printf("-------------------xx---------------------------\n");
   printf("Welcome to fund tranfer function\n");
@@ -644,7 +649,7 @@ void fundTransfer(struct Bank* b) {
         printf("Valid bank account number.\n");
         //check if account present
         // int acc_found=1;
-        for(int i=0; i<2; i++) {
+        for(int i=0; i<accountCount; i++) {
           if(strcmp(b[i].account_number, acc_num)==0) {
             //enter bank account to tranfer ammount
             flag_an=0;
@@ -661,7 +666,7 @@ void fundTransfer(struct Bank* b) {
                 // flag_ban=0;
                 printf("Valid bank account number.\n");
                 //again check if account is present
-                for(int j=0; j<2; j++) {
+                for(int j=0; j<accountCount; j++) {
                   if(strcmp(b[j].account_number, bn_acc_num)==0) {
                     flag_ban=0;
                     printf("Enter amount to be tranfered: ");
@@ -700,17 +705,12 @@ void fundTransfer(struct Bank* b) {
     }
 }
 
-
 int main() {
   printf("-----------------Bank Project-------------------\n");
   struct Bank b[2];
-  for(int i=0; i<2; i++) {
-    b[i] = createBankAccount();
-  }
-
+  //Menu
   while(1) {
-    printf("\n-------------------xx----------------------\n");
-    printf("What do you want to do\n");
+    printf("What do you want to do:\n");
     printf("1) Create account\n");
     printf("2) Update account\n");
     printf("3) Deposite\n");
@@ -724,14 +724,17 @@ int main() {
     printf("Enter your choice: ");
     scanf("%d", &ch);
     getchar();
+    printf("\n-------------------xx----------------------\n");
     switch (ch)
     {
     case 1:
       printf("\nYou chose to create account\n");
       // create bank accounts
-      for(int i=0; i<2; i++) {
-        b[i] = createBankAccount();
-      }
+      // for(int i=0; i<accountCount; i++) {
+      //   b[i] = createBankAccount();
+      // }
+      b[accountCount] = createBankAccount();
+      accountCount++;
       break;
 
     case 2:
